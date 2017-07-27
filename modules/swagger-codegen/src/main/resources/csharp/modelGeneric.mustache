@@ -20,9 +20,11 @@
         {{#vars}}
         {{#isEnum}}
         /// <summary>
-        /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{{description}}}{{/description}}
-        /// </summary>{{#description}}
-        /// <value>{{{description}}}</value>{{/description}}
+        /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
+        /// </summary>
+        {{#description}}
+        /// <value>{{description}}</value>
+        {{/description}}
         [DataMember(Name="{{baseName}}", EmitDefaultValue={{emitDefaultValue}})]
         public {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
         {{/isEnum}}
@@ -91,9 +93,11 @@ this.{{name}} = {{name}};
         /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
         /// </summary>{{#description}}
         /// <value>{{description}}</value>{{/description}}
-        [DataMember(Name="{{baseName}}", EmitDefaultValue={{emitDefaultValue}})]
+        [DataMember(Name="{{baseName}}", EmitDefaultValue={{emitDefaultValue}})]{{#isDate}}
+        [JsonConverter(typeof(SwaggerDateConverter))]{{/isDate}}
         public {{{datatype}}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
         {{/isEnum}}
+
         {{/vars}}
         /// <summary>
         /// Returns the string presentation of the object
@@ -239,13 +243,15 @@ this.{{name}} = {{name}};
 
             {{/minimum}}
             {{#pattern}}
+            {{^isByteArray}}
             // {{{name}}} ({{{datatype}}}) pattern
             Regex regex{{{name}}} = new Regex(@"{{{vendorExtensions.x-regex}}}"{{#vendorExtensions.x-modifiers}}{{#-first}}, {{/-first}}RegexOptions.{{{.}}}{{^-last}} | {{/-last}}{{/vendorExtensions.x-modifiers}});
             if (false == regex{{{name}}}.Match(this.{{{name}}}).Success)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for {{{name}}}, must match a pattern of {{{pattern}}}.", new [] { "{{{name}}}" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for {{{name}}}, must match a pattern of " + regex{{{name}}}, new [] { "{{{name}}}" });
             }
 
+            {{/isByteArray}}
             {{/pattern}}
             {{/hasValidation}}
             {{/vars}}
