@@ -9,10 +9,15 @@ import Foundation
 
 
 /** Model for testing model with \&quot;_class\&quot; property */
-open class ClassModel: Codable {
+
+public struct ClassModel: Codable {
 
     public var _class: String?
 
-    public init() {}
+    public init(_class: String?) {
+        self._class = _class
+    }
+
 
 }
+

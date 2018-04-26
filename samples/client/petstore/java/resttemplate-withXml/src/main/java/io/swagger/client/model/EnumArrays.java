@@ -14,6 +14,7 @@
 package io.swagger.client.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -21,16 +22,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import javax.xml.bind.annotation.*;
 
 /**
  * EnumArrays
  */
-@JacksonXmlRootElement(localName = "EnumArrays")
+
 @XmlRootElement(name = "EnumArrays")
 @XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "EnumArrays")
 public class EnumArrays {
   /**
    * Gets or Sets justSymbol
@@ -108,8 +109,10 @@ public class EnumArrays {
   }
 
   @JsonProperty("array_enum")
-  @JacksonXmlProperty(localName = "array_enum")
-  @XmlElement(name = "array_enum")
+  // Is a container wrapped=false
+  // items.name=arrayEnum items.baseName=arrayEnum items.xmlName= items.xmlNamespace=
+  // items.example= items.type=String
+  @XmlElement(name = "arrayEnum")
   private List<ArrayEnumEnum> arrayEnum = null;
 
   public EnumArrays justSymbol(JustSymbolEnum justSymbol) {
@@ -197,6 +200,6 @@ public class EnumArrays {
     }
     return o.toString().replace("\n", "\n    ");
   }
-  
+
 }
 

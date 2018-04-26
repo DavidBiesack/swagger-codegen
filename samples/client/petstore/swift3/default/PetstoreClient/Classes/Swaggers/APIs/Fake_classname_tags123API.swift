@@ -25,9 +25,11 @@ open class Fake_classname_tags123API: APIBase {
     /**
      To test class name in snake case
      - PATCH /fake_classname_test
-
+     - API Key:
+       - type: apiKey api_key_query (QUERY)
+       - name: api_key_query
      - examples: [{contentType=application/json, example={
-  "client" : "aeiou"
+  "client" : "client"
 }}]
      - parameter body: (body) client model 
      - returns: RequestBuilder<Client> 
@@ -35,9 +37,9 @@ open class Fake_classname_tags123API: APIBase {
     open class func testClassnameWithRequestBuilder(body: Client) -> RequestBuilder<Client> {
         let path = "/fake_classname_test"
         let URLString = PetstoreClientAPI.basePath + path
-        let parameters = body.encodeToJSON() as? [String:AnyObject]
+        let parameters = body.encodeToJSON()
 
-        let url = NSURLComponents(string: URLString)
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Client>.Type = PetstoreClientAPI.requestBuilderFactory.getBuilder()
 

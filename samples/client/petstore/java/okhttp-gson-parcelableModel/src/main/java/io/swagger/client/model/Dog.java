@@ -14,6 +14,7 @@
 package io.swagger.client.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -34,6 +35,9 @@ public class Dog extends Animal implements Parcelable {
   @SerializedName("breed")
   private String breed = null;
 
+  public Dog() {
+    super();
+  }
   public Dog breed(String breed) {
     this.breed = breed;
     return this;
@@ -92,21 +96,18 @@ public class Dog extends Animal implements Parcelable {
     }
     return o.toString().replace("\n", "\n    ");
   }
-  
+
+
   public void writeToParcel(Parcel out, int flags) {
-     super.writeToParcel(out, flags);  
+    super.writeToParcel(out, flags);
     out.writeValue(breed);
   }
 
-  public Dog() {
-    super();
-  }
-
   Dog(Parcel in) {
-     super(in); 
+    super(in);
     breed = (String)in.readValue(null);
   }
-  
+
   public int describeContents() {
     return 0;
   }

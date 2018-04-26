@@ -1,16 +1,16 @@
 package io.swagger.codegen;
 
-import io.swagger.models.Model;
-import io.swagger.models.Operation;
-import io.swagger.models.Swagger;
-import io.swagger.models.auth.SecuritySchemeDefinition;
-import io.swagger.models.properties.Property;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.samskivert.mustache.Mustache.Compiler;
+
+import io.swagger.models.Model;
+import io.swagger.models.Operation;
+import io.swagger.models.Swagger;
+import io.swagger.models.auth.SecuritySchemeDefinition;
+import io.swagger.models.properties.Property;
 
 public interface CodegenConfig {
     CodegenType getTag();
@@ -153,6 +153,8 @@ public interface CodegenConfig {
 
     Map<String, Object> postProcessOperations(Map<String, Object> objs);
 
+    Map<String, Object> postProcessOperationsWithModels(Map<String, Object> objs, List<Object> allModels);
+
     Map<String, Object> postProcessSupportingFileData(Map<String, Object> objs);
 
     void postProcessModelProperty(CodegenModel model, CodegenProperty property);
@@ -174,6 +176,10 @@ public interface CodegenConfig {
     boolean isRemoveOperationIdPrefix();
 
     void setRemoveOperationIdPrefix(boolean removeOperationIdPrefix);
+
+    public boolean isHideGenerationTimestamp();
+
+    public void setHideGenerationTimestamp(boolean hideGenerationTimestamp);
 
     Map<String, String> supportedLibraries();
 
@@ -213,5 +219,7 @@ public interface CodegenConfig {
     String toSetter(String name);
 
     String toGetter(String name);
+
+    String sanitizeName(String name);
 
 }

@@ -8,10 +8,19 @@
 import Foundation
 
 
-open class Dog: Animal {
 
+public struct Dog: Codable {
+
+    public var className: String
+    public var color: String?
     public var breed: String?
 
-    
+    public init(className: String, color: String?, breed: String?) {
+        self.className = className
+        self.color = color
+        self.breed = breed
+    }
+
 
 }
+

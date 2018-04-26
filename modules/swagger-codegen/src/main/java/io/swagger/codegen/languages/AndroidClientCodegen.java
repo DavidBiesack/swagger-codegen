@@ -355,9 +355,21 @@ public class AndroidClientCodegen extends DefaultCodegen implements CodegenConfi
 
         if (additionalProperties.containsKey(CodegenConstants.INVOKER_PACKAGE)) {
             this.setInvokerPackage((String) additionalProperties.get(CodegenConstants.INVOKER_PACKAGE));
+            this.setRequestPackage(invokerPackage + ".request");
+            this.setAuthPackage(invokerPackage + ".auth");
         } else {
             //not set, use default to be passed to template
             additionalProperties.put(CodegenConstants.INVOKER_PACKAGE, invokerPackage);
+            additionalProperties.put("requestPackage", requestPackage);
+            additionalProperties.put("authPackage", authPackage);
+        }
+
+        if (!additionalProperties.containsKey(CodegenConstants.MODEL_PACKAGE)) {
+            additionalProperties.put(CodegenConstants.MODEL_PACKAGE, modelPackage);
+        }
+
+        if (!additionalProperties.containsKey(CodegenConstants.API_PACKAGE)) {
+            additionalProperties.put(CodegenConstants.API_PACKAGE, apiPackage);
         }
 
         if (additionalProperties.containsKey(CodegenConstants.GROUP_ID)) {
@@ -545,8 +557,20 @@ public class AndroidClientCodegen extends DefaultCodegen implements CodegenConfi
         this.androidBuildToolsVersion = androidBuildToolsVersion;
     }
 
+    public String getInvokerPackage() {
+        return invokerPackage;
+    }
+
     public void setInvokerPackage(String invokerPackage) {
         this.invokerPackage = invokerPackage;
+    }
+
+    public void setRequestPackage(String requestPackage) {
+        this.requestPackage = requestPackage;
+    }
+
+    public void setAuthPackage(String authPackage) {
+        this.authPackage = authPackage;
     }
 
     public void setGroupId(String groupId) {

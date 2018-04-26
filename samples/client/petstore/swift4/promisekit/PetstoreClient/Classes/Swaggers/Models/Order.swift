@@ -8,21 +8,40 @@
 import Foundation
 
 
-open class Order: Codable {
+
+public struct Order: Codable {
 
     public enum Status: String, Codable { 
         case placed = "placed"
         case approved = "approved"
         case delivered = "delivered"
     }
-    public var id: Int64?
+    public var _id: Int64?
     public var petId: Int64?
-    public var quantity: Int32?
+    public var quantity: Int?
     public var shipDate: Date?
     /** Order Status */
     public var status: Status?
     public var complete: Bool?
 
-    public init() {}
+    public init(_id: Int64?, petId: Int64?, quantity: Int?, shipDate: Date?, status: Status?, complete: Bool?) {
+        self._id = _id
+        self.petId = petId
+        self.quantity = quantity
+        self.shipDate = shipDate
+        self.status = status
+        self.complete = complete
+    }
+
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case petId
+        case quantity
+        case shipDate
+        case status
+        case complete
+    }
+
 
 }
+

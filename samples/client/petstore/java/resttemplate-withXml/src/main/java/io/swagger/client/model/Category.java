@@ -14,21 +14,22 @@
 package io.swagger.client.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import javax.xml.bind.annotation.*;
 
 /**
  * Category
  */
-@JacksonXmlRootElement(localName = "Category")
+
 @XmlRootElement(name = "Category")
 @XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName = "Category")
 public class Category {
   @JsonProperty("id")
   @JacksonXmlProperty(localName = "id")
@@ -117,6 +118,6 @@ public class Category {
     }
     return o.toString().replace("\n", "\n    ");
   }
-  
+
 }
 

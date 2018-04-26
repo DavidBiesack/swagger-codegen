@@ -9,11 +9,22 @@ import Foundation
 
 
 /** Model for testing model name starting with number */
-open class Model200Response: Codable {
 
-    public var name: Int32?
+public struct Model200Response: Codable {
+
+    public var name: Int?
     public var _class: String?
 
-    public init() {}
+    public init(name: Int?, _class: String?) {
+        self.name = name
+        self._class = _class
+    }
+
+    public enum CodingKeys: String, CodingKey { 
+        case name
+        case _class = "class"
+    }
+
 
 }
+

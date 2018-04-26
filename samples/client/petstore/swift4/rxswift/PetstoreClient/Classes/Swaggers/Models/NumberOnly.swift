@@ -8,10 +8,19 @@
 import Foundation
 
 
-open class NumberOnly: Codable {
+
+public struct NumberOnly: Codable {
 
     public var justNumber: Double?
 
-    public init() {}
+    public init(justNumber: Double?) {
+        self.justNumber = justNumber
+    }
+
+    public enum CodingKeys: String, CodingKey { 
+        case justNumber = "JustNumber"
+    }
+
 
 }
+

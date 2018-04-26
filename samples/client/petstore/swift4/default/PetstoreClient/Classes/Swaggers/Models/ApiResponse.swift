@@ -8,12 +8,19 @@
 import Foundation
 
 
-open class ApiResponse: Codable {
 
-    public var code: Int32?
+public struct ApiResponse: Codable {
+
+    public var code: Int?
     public var type: String?
     public var message: String?
 
-    public init() {}
+    public init(code: Int?, type: String?, message: String?) {
+        self.code = code
+        self.type = type
+        self.message = message
+    }
+
 
 }
+

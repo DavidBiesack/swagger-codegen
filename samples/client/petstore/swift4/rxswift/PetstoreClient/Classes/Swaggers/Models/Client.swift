@@ -8,10 +8,15 @@
 import Foundation
 
 
-open class Client: Codable {
+
+public struct Client: Codable {
 
     public var client: String?
 
-    public init() {}
+    public init(client: String?) {
+        self.client = client
+    }
+
 
 }
+

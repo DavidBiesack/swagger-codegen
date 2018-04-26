@@ -14,6 +14,7 @@
 package io.swagger.client.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -98,6 +99,8 @@ public class Order implements Parcelable {
   @SerializedName("complete")
   private Boolean complete = false;
 
+  public Order() {
+  }
   public Order id(Long id) {
     this.id = id;
     return this;
@@ -255,28 +258,18 @@ public class Order implements Parcelable {
     }
     return o.toString().replace("\n", "\n    ");
   }
-  
+
+
   public void writeToParcel(Parcel out, int flags) {
-     
     out.writeValue(id);
-
     out.writeValue(petId);
-
     out.writeValue(quantity);
-
     out.writeValue(shipDate);
-
     out.writeValue(status);
-
     out.writeValue(complete);
   }
 
-  public Order() {
-    super();
-  }
-
   Order(Parcel in) {
-    
     id = (Long)in.readValue(null);
     petId = (Long)in.readValue(null);
     quantity = (Integer)in.readValue(null);
@@ -284,7 +277,7 @@ public class Order implements Parcelable {
     status = (StatusEnum)in.readValue(null);
     complete = (Boolean)in.readValue(null);
   }
-  
+
   public int describeContents() {
     return 0;
   }

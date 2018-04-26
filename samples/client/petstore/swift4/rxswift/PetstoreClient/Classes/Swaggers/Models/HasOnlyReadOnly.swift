@@ -8,11 +8,17 @@
 import Foundation
 
 
-open class HasOnlyReadOnly: Codable {
+
+public struct HasOnlyReadOnly: Codable {
 
     public var bar: String?
     public var foo: String?
 
-    public init() {}
+    public init(bar: String?, foo: String?) {
+        self.bar = bar
+        self.foo = foo
+    }
+
 
 }
+
